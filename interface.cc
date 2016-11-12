@@ -64,6 +64,5 @@ void Interface::processPressure(float value, std::string type) {
 void Interface::processMoles(float value) {
   moles_ = value;
 }
-}
-}
+
 }
