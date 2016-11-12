@@ -13,7 +13,6 @@ void Interface::getInput() {
   for (int i = 0; i < 3; ++i) {
     char type  = ' ';
     while ( type != 'v' && type != 't' && type != 'p' && type != 'm') {
-//    std::cout << "Please chose a variable to enter (Volume, Temperature, Pressure, Moles)" << std::endl;
       std::cout << "Please choose a variable to enter (";
       if (!hasEnteredPressure) { std::cout << "Presssure, "; }
       if (!hasEnteredVolume) {
@@ -28,24 +27,25 @@ void Interface::getInput() {
         std::cout << "Moles";
       }
       std::cout << ")" << std::endl;
-      std::cout << "Enter v for Volume, t for Temperature, p for Pressure, or m for Moles: ";
+      std::cout << "Enter p for Pressure, v for Volume, t for Temperature, m for Moles: ";
       std::cin >> type;
+      std::cout << std::endl;
     }
     std::string unit = " ";
     int input;
-    if (type = 'v') {
+    if (type == 'v') {
       std::cout << "Please enter the amount of ml of gas: ";
       std::cin >> input;
       processVolume(input, "ml");
       hasEnteredVolume = true;
     }
-    else if (type = 't') {
+    else if (type == 't') {
       std::cout << "Please enter the temperature in Kelvin: ";
       std::cin >> input;
       processTemperature(input, "k");
       hasEnteredTemperature = true;
     }
-    else if (type = 'p') {
+    else if (type == 'p') {
       std::cout << "Please enter the pressure in atm: ";
       std::cin >> input;
       processPressure(input, "atm");
@@ -57,6 +57,7 @@ void Interface::getInput() {
       processMoles(input);
       hasEnteredMoles = true;
     }
+    std::cout << std::endl;
   }
 }
 
