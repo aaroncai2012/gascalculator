@@ -34,8 +34,17 @@ void Interface::getInput() {
       if (!hasEnteredMoles) {
         std::cout << "Moles";
       }
-      std::cout << ")" << std::endl;
-      std::cout << "Enter p for Pressure, v for Volume, t for Temperature, m for Moles: ";
+      std::cout << ")" << std::endl << "Enter "; 
+      if (!hasEnteredPressure) { std::cout << "p for Pressure, "; }
+      if (!hasEnteredVolume) {
+        if (hasEnteredTemperature && hasEnteredMoles) { std::cout << "v for Volume: "; }
+        else { std::cout << "v for Volume, "; }
+      }
+      if (!hasEnteredTemperature) {
+        if (hasEnteredMoles) { std::cout << "t for Temperature: "; }
+        else { std::cout << "t for Temperature, "; }
+      }
+      if (!hasEnteredMoles) { std::cout << "m for Moles: "; }
       std::cin >> type;
       std::cout << std::endl;
     }
