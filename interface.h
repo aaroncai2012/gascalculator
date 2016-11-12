@@ -6,9 +6,12 @@
 namespace gascalculator {
 
 class Interface {
+
   public:
 
+    Interface();
     void getInput();
+    void printAnswer(float answer);
     float getPressure();
     float getMoles();
     float getTemperature();

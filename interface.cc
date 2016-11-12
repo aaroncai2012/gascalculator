@@ -5,6 +5,14 @@
 
 namespace gascalculator {
 
+Interface::Interface() {
+
+  pressure_ = 0;
+  volume_ = 0;
+  temperature_ = 0;
+  moles_ = 0;
+
+}
 void Interface::getInput() {
   bool hasEnteredPressure = false;
   bool hasEnteredVolume = false;
@@ -32,33 +40,69 @@ void Interface::getInput() {
       std::cout << std::endl;
     }
     std::string unit = " ";
-    int input;
+    float input = 0;
     if (type == 'v') {
-      std::cout << "Please enter the amount of ml of gas: ";
-      std::cin >> input;
-      processVolume(input, "ml");
+      while (input <= 0) {
+        std::cout << "Please enter the amount of litres of gas: ";
+        std::cin >> input;
+      }
+      processVolume(input, "l");
       hasEnteredVolume = true;
     }
     else if (type == 't') {
-      std::cout << "Please enter the temperature in Kelvin: ";
-      std::cin >> input;
+      while (input <= 0) {
+        std::cout << "Please enter the temperature in Kelvin: ";
+        std::cin >> input;
+      }
       processTemperature(input, "k");
       hasEnteredTemperature = true;
     }
     else if (type == 'p') {
-      std::cout << "Please enter the pressure in atm: ";
-      std::cin >> input;
+      while (input <= 0) {
+        std::cout << "Please enter the pressure in atm: ";
+        std::cin >> input;
+      }
       processPressure(input, "atm");
       hasEnteredPressure = true;
     }
     else {
-      std::cout << "Please enter the amount of moles of gas: ";
-      std::cin >> input;
+      while (input <= 0) {
+        std::cout << "Please enter the amount of moles of gas: ";
+        std::cin >> input;
+      }
       processMoles(input);
       hasEnteredMoles = true;
     }
     std::cout << std::endl;
   }
+}
+
+void Interface::printAnswer(float answer) {
+
+  std::cout << "A gas sample with ";
+  if (pressure_) {
+    std::cout << pressure_ << " atm, ";
+  }
+  if (volume_) {
+    std::cout << volume_ << " L, ";
+  }
+  if (temperature_ && !moles_) {
+    std::cout << temperature_ << " K ";
+  }
+  else {
+    std::cout << temperature_ << " K, ";
+  }
+  if (moles_) {
+    std::cout << moles_ << " moles ";
+  }
+
+  std::cout << "will have " << answer;
+  if (!pressure_) { std::cout << " atm."; }
+  else if (!volume_) { std::cout << " L."; }
+  else if (!temperature_) { std::cout << " K."; }
+  else { std::cout << " moles."; }
+  std::cout << std::endl;
+
 }
 
 float Interface::getPressure() { return pressure_; }
@@ -67,7 +111,7 @@ float Interface::getVolume() { return volume_; }
 float Interface::getMoles() { return moles_; }
 
 void Interface::processVolume(float value, std::string type) {
-  if (type == "ml") {
+  if (type == "l") {
     volume_ = value;
   }
 }
