@@ -18,10 +18,10 @@ class Interface {
     float getVolume();
 
   private:
-    void processPressure(float value, std::string unit);
+    void processPressure(float value, int unit);
     void processMoles(float value);
-    void processTemperature(float value, std::string unit);
-    void processVolume(float value, std::string unit);
+    void processTemperature(float value, int unit);
+    void processVolume(float value, int unit);
 
     float pressure_;
     float moles_;
